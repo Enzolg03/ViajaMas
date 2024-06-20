@@ -14,7 +14,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Controller
-@RequestMapping("seguridad")
+@RequestMapping(path = "seguridad")
 public class SeguridadController {
     private UsuarioService usuarioService;
     @GetMapping("/usuario")

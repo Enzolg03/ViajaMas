@@ -11,8 +11,6 @@ import java.util.Date;
 
 @RestControllerAdvice
 public class ControllerExceptionHandler {
-
-
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public MensajeErrorDto resourceNotFoundException(
@@ -25,6 +23,4 @@ public class ControllerExceptionHandler {
                 .fechaError(new Date())
                 .descripcion(request.getDescription(true)).build();
     }
-
-
 }
