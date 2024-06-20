@@ -17,22 +17,13 @@ public class JurisdiccionService implements IJurisdiccionService{
     private JurisdiccionRepository jurisdiccionRepository;
 
     @Override
-    public Jurisdiccion guardarJurisdiccion(JurisdiccionDto jurisdiccionDto) {
-        Jurisdiccion nuevaJurisdiccion= new Jurisdiccion();
-        nuevaJurisdiccion.setDescripcion(jurisdiccionDto.getDescripcion());
-        Pais pais  = new Pais();
+    public Jurisdiccion guardarJurisdiccion(Jurisdiccion jurisdiccion, JurisdiccionDto jurisdiccionDto) {
+        jurisdiccion.setDescripcion(jurisdiccionDto.getDescripcion());
+        Pais pais = new Pais();
         pais.setIdpais(jurisdiccionDto.getIdpais());
-        nuevaJurisdiccion.setPais(pais);
-        return jurisdiccionRepository.save(nuevaJurisdiccion);
+        jurisdiccion.setPais(pais);
+        return jurisdiccionRepository.save(jurisdiccion);
     }
-
-    //@Override
-   // public void actualizarJurisdiccion(Jurisdiccion jurisdiccion) {
-       // jurisdiccionRepository.actualizarJurisdiccion(
-               // jurisdiccion.getDescripcion(),jurisdiccion.getIdpais(),
-               // jurisdiccion.getIdjurisdiccion()
-       // );
-    //}
 
     @Override
     public List<Jurisdiccion> listarJurisdicciones() {
