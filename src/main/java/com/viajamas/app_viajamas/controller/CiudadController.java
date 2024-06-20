@@ -2,6 +2,8 @@ package com.viajamas.app_viajamas.controller;
 
 import com.viajamas.app_viajamas.exception.ResourceNotFoundException;
 import com.viajamas.app_viajamas.model.bd.Ciudad;
+import com.viajamas.app_viajamas.model.bd.Jurisdiccion;
+import com.viajamas.app_viajamas.model.dto.CiudadDto;
 import com.viajamas.app_viajamas.service.CiudadService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,22 +29,30 @@ public class CiudadController {
     }
     @PostMapping("")
     public ResponseEntity<Ciudad> registrarCiudad(
-            @RequestBody Ciudad category
+            @RequestBody CiudadDto ciudadDto
     ){
-        return new ResponseEntity<>(
-                ciudadService.guardarCiudad(category), HttpStatus.CREATED);
+        Ciudad nuevaCiudad = new Ciudad();
+        Ciudad result = ciudadService.guardarCiudad(nuevaCiudad, ciudadDto);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
     public ResponseEntity<Ciudad> actualizarCiudad(
             @PathVariable Integer id,
-            @RequestBody Ciudad ciudad
+            @RequestBody CiudadDto ciudadDto
     ){
-        Ciudad nuevoCiudad = ciudadService.obtenerCiudadxId(id)
-                .orElseThrow(() -> new ResourceNotFoundException("El país con Id" +
+        Ciudad nuevaCiudad = ciudadService.obtenerCiudadxId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("La ciudad con Id" +
                         + id + " no existe"));
-        nuevoCiudad.setDescripcion(Ciudad.getDescripcion());
+        Ciudad result = ciudadService.guardarCiudad(nuevaCiudad, ciudadDto);
         return new ResponseEntity<>(
-                ciudadService.guardarCiudad(nuevoCiudad),
+                result,
                 HttpStatus.OK);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarCiudad(@PathVariable Integer id) {
+        Ciudad ciudad = ciudadService.obtenerCiudadxId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("La ciudad con Id " + id + " no existe"));
+        ciudadService.eliminarCiudad(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
