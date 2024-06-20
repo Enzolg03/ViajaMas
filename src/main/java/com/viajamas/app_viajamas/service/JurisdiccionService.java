@@ -1,0 +1,55 @@
+package com.viajamas.app_viajamas.service;
+
+import com.viajamas.app_viajamas.model.bd.Jurisdiccion;
+import com.viajamas.app_viajamas.model.bd.Pais;
+import com.viajamas.app_viajamas.model.dto.JurisdiccionDto;
+import com.viajamas.app_viajamas.repository.JurisdiccionRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@AllArgsConstructor
+public class JurisdiccionService implements IJurisdiccionService{
+
+    private JurisdiccionRepository jurisdiccionRepository;
+
+    @Override
+    public Jurisdiccion guardarJurisdiccion(JurisdiccionDto jurisdiccionDto) {
+        Jurisdiccion nuevaJurisdiccion= new Jurisdiccion();
+        nuevaJurisdiccion.setDescripcion(jurisdiccionDto.getDescripcion());
+        Pais pais  = new Pais();
+        pais.setIdpais(jurisdiccionDto.getIdpais());
+        nuevaJurisdiccion.setPais(pais);
+        return jurisdiccionRepository.save(nuevaJurisdiccion);
+    }
+
+    //@Override
+   // public void actualizarJurisdiccion(Jurisdiccion jurisdiccion) {
+       // jurisdiccionRepository.actualizarJurisdiccion(
+               // jurisdiccion.getDescripcion(),jurisdiccion.getIdpais(),
+               // jurisdiccion.getIdjurisdiccion()
+       // );
+    //}
+
+    @Override
+    public List<Jurisdiccion> listarJurisdicciones() {
+        return jurisdiccionRepository.findAll();
+    }
+
+    @Override
+    public void eliminarJurisdiccion(int idjurisdiccion) {
+        jurisdiccionRepository.deleteById(idjurisdiccion);
+    }
+
+    @Override
+    public Optional<Jurisdiccion> obtenerJurisdiccionxId(Integer id) {
+        Optional<Jurisdiccion> jurisdiccion= jurisdiccionRepository.findById(id);
+        if(jurisdiccion.isEmpty()){
+            return jurisdiccion;
+        }
+        return jurisdiccion;
+    }
+}
