@@ -10,11 +10,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AerolineaRepository extends JpaRepository<Aerolinea, Integer> {
-    @Transactional
-    @Modifying
-    @Query(value = "UPDATE aerolinea SET nombre=:nombre, idpais=:idpais where  idaerolinea=: idaerolinea",
-            nativeQuery = true)
-    void actualizarAerolinea(@Param("nombre") String nombre,
-                                @Param("idpais") Integer idpais,
-                                @Param("idaerolinea") Integer idaerolinea);
+    //@Transactional
+    //@Modifying
+    //@Query("UPDATE aerolinea SET nombre=:nombre, idpais=:idpais WHERE idaerolinea=:idaerolinea")
+    //void actualizarAerolinea(@Param("nombre") String nombre, @Param("idpais") Integer idpais, @Param("idaerolinea") Integer idaerolinea);
 }
