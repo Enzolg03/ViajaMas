@@ -16,6 +16,12 @@ public class Aeropuerto {
     private Integer idaeropuerto;
     private String nombre;
     @ManyToOne
-    @JoinColumn(name="ciudad")
+    @JoinColumn(name="idciudad")
+    private Ciudad ciudad;
+    @ManyToOne
+    @JoinColumn(name="idjurisdiccion")
+    private Jurisdiccion jurisdiccion;
+    @ManyToOne
+    @JoinColumn(name="idpais")
     private Pais pais;
 }
