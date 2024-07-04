@@ -11,5 +11,4 @@ public interface ICiudadService {
     List<Ciudad> listarCiudades();
     void eliminarCiudad(int idciudad);
     Optional<Ciudad> obtenerCiudadxId(Integer id);
-
 }
