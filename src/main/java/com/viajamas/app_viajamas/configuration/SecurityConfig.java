@@ -12,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import com.viajamas.app_viajamas.service.DetalleUsuarioService;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
@@ -21,6 +23,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain config(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
+                .cors(withDefaults())
                 .authorizeHttpRequests(
                         auth ->
                                 auth.requestMatchers("/auth/login",
