@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Controller
 @RequestMapping(path = "api/v1/auth")
-public class SeguridadController {
+public class LoginController {
 
     private DetalleUsuarioService detalleUsuarioService;
     private AuthenticationManager authenticationManager;

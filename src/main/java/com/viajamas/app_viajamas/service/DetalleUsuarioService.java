@@ -1,5 +1,6 @@
 package com.viajamas.app_viajamas.service;
 
+import com.viajamas.app_viajamas.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,29 +19,31 @@ import java.util.Set;
 @AllArgsConstructor
 @Service
 public class DetalleUsuarioService implements UserDetailsService {
-    private UsuarioService usuarioService;
+    private UsuarioRepository usuarioRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioService.buscarUsuarioXNomUsuario(username);
-        return obtenerUsuarioAutenticado(usuario,
-                obtenerListaRolesUsuario(usuario.getRoles()));
+        Usuario usuario = obtenerUsuarioXNomusuario(username);
+        return autenticacionUsuario(usuario,
+                obtenerListaRoles(usuario.getRoles()));
     }
-    private List<GrantedAuthority> obtenerListaRolesUsuario(Set<Rol> listaRoles){
+    public Usuario obtenerUsuarioXNomusuario(String nomusuario){
+        return usuarioRepository.findByNomusuario(nomusuario);
+    }
+    public List<GrantedAuthority> obtenerListaRoles(Set<Rol> listaRoles){
         List<GrantedAuthority> roles = new ArrayList<>();
         for(Rol rol : listaRoles){
-            roles.add(new SimpleGrantedAuthority(rol.getNomrol()));
+            roles.add(new SimpleGrantedAuthority("ROLE_"+rol.getNomrol()));
         }
         /*listaRoles.forEach(rol -> {
             roles.add(new SimpleGrantedAuthority(rol.getNomrol()));
         });*/
         return roles;
     }
-    private UserDetails obtenerUsuarioAutenticado(Usuario usuario,
+    private UserDetails autenticacionUsuario(Usuario usuario,
                                                   List<GrantedAuthority> authorityList){
         return new User(usuario.getNomusuario(), usuario.getPassword(), usuario.getActivo(),
                 true, true, true,
                 authorityList);
     }
-
 
 }

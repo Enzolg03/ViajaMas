@@ -1,4 +1,4 @@
-package pe.edu.cibertect.api_rest_ventas.model.dto;
+package com.viajamas.app_viajamas.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

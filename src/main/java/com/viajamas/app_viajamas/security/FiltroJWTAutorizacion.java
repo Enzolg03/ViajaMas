@@ -1,4 +1,4 @@
-package pe.edu.cibertect.api_rest_ventas.security;
+package com.viajamas.app_viajamas.security;
 
 import io.jsonwebtoken.*;
 import jakarta.servlet.FilterChain;

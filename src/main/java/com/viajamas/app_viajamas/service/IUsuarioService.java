@@ -12,4 +12,6 @@ public interface IUsuarioService {
     void actualizarUsuario(Usuario usuario);
     List<Usuario> listarUsuario();
     Usuario buscarUsuarioXIdUsuario(Integer idusuario);
+    Usuario obtenerUsuarioPorNomUsuario(
+            String nomusuario);
 }
