@@ -28,6 +28,14 @@ public class AvionController {
         }
         return new ResponseEntity<>(avionList, HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Avion> obtenerAvionPorId(@PathVariable Integer id) {
+        Avion avion = avionService.obtenerAvionxId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("El avion con Id " + id + " no existe"));
+        return new ResponseEntity<>(avion, HttpStatus.OK);
+    }
+
     @PostMapping("")
     public ResponseEntity<Avion> registrarAvion(
             @RequestBody Avion category
@@ -35,6 +43,7 @@ public class AvionController {
         return new ResponseEntity<>(
                 avionService.guardarAvion(category), HttpStatus.CREATED);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Avion> actualizarAvion(

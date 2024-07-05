@@ -1,6 +1,7 @@
 package com.viajamas.app_viajamas.controller;
 
 import com.viajamas.app_viajamas.exception.ResourceNotFoundException;
+import com.viajamas.app_viajamas.model.bd.Avion;
 import com.viajamas.app_viajamas.model.bd.Pais;
 import com.viajamas.app_viajamas.service.PaisService;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,14 @@ public class PaisController {
         }
         return new ResponseEntity<>(paisList, HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Pais> obtenerPaisPorId(@PathVariable Integer id) {
+        Pais pais = paisService.obtenerPaisxId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("El pais con Id " + id + " no existe"));
+        return new ResponseEntity<>(pais, HttpStatus.OK);
+    }
+
     @PostMapping("")
     public ResponseEntity<Pais> registrarPais(
             @RequestBody Pais category

@@ -28,6 +28,13 @@ public class AerolineaController {
         return new ResponseEntity<>(aerolineaList, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Aerolinea> obtenerAerolineaPorId(@PathVariable Integer id) {
+        Aerolinea aerolinea = aerolineaService.obtenerAerolineaxId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("La aerolinea con Id " + id + " no existe"));
+        return new ResponseEntity<>(aerolinea, HttpStatus.OK);
+    }
+
     @PostMapping("")
     public ResponseEntity<Aerolinea> registrarAerolinea(
             @RequestBody AerolineaDto aerolineaDto
