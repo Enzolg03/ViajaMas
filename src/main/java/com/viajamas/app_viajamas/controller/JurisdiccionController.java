@@ -30,27 +30,31 @@ public class JurisdiccionController {
         return new ResponseEntity<>(jurisdiccionList, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Jurisdiccion> obtenerJurisdiccionXId(@PathVariable Integer id){
+        Jurisdiccion jurisdiccionObtenido = jurisdiccionService.obtenerJurisdiccionxId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("La jurisdiccion con Id" +
+                        + id + " no existe"));
+        return new ResponseEntity<>(jurisdiccionObtenido,
+                HttpStatus.OK);
+    }
+
     @PostMapping("")
-    public ResponseEntity<Jurisdiccion> registrarJurisdiccion(
-            @RequestBody JurisdiccionDto jurisdiccionDto
-    ){
+    public ResponseEntity<Jurisdiccion> registrarJurisdiccion(@RequestBody JurisdiccionDto jurisdiccionDto) {
         Jurisdiccion nuevaJurisdiccion = new Jurisdiccion();
         Jurisdiccion result = jurisdiccionService.guardarJurisdiccion(nuevaJurisdiccion, jurisdiccionDto);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Jurisdiccion> actualizarJurisdiccion(
-            @PathVariable Integer id,
-            @RequestBody JurisdiccionDto jurisdiccionDto
-    ){
-        Jurisdiccion nuevaJurisdiccion = jurisdiccionService.obtenerJurisdiccionxId(id)
-                .orElseThrow(() -> new ResourceNotFoundException("La jurisdiccion con Id" +
-                        + id + " no existe"));
-        Jurisdiccion result = jurisdiccionService.guardarJurisdiccion(nuevaJurisdiccion, jurisdiccionDto);
-        return new ResponseEntity<>(
-                result,
-                HttpStatus.OK);
+    public ResponseEntity<Jurisdiccion> actualizarJurisdiccion(@PathVariable Integer id,
+                                                               @RequestBody JurisdiccionDto jurisdiccionDto) {
+        Jurisdiccion jurisdiccion = jurisdiccionService.obtenerJurisdiccionxId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("La jurisdiccion con Id " + id + " no existe"));
+        Jurisdiccion result = jurisdiccionService.guardarJurisdiccion(jurisdiccion, jurisdiccionDto);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarJurisdiccion(@PathVariable Integer id) {
         Jurisdiccion jurisdiccion = jurisdiccionService.obtenerJurisdiccionxId(id)

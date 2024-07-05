@@ -19,9 +19,15 @@ public class JurisdiccionService implements IJurisdiccionService{
     @Override
     public Jurisdiccion guardarJurisdiccion(Jurisdiccion jurisdiccion, JurisdiccionDto jurisdiccionDto) {
         jurisdiccion.setDescripcion(jurisdiccionDto.getDescripcion());
+
+        // Crear un objeto Pais solo con el ID
         Pais pais = new Pais();
         pais.setIdpais(jurisdiccionDto.getIdpais());
+
+        // Asignar el país al objeto jurisdiccion
         jurisdiccion.setPais(pais);
+
+        // Guardar en la base de datos
         return jurisdiccionRepository.save(jurisdiccion);
     }
 
