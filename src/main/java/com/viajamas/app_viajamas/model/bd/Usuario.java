@@ -1,13 +1,12 @@
 package com.viajamas.app_viajamas.model.bd;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(name = "usuario")

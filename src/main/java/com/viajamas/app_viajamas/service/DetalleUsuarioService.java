@@ -21,29 +21,36 @@ import java.util.Set;
 public class DetalleUsuarioService implements UserDetailsService {
     private UsuarioRepository usuarioRepository;
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = obtenerUsuarioXNomusuario(username);
-        return autenticacionUsuario(usuario,
-                obtenerListaRoles(usuario.getRoles()));
+    public UserDetails loadUserByUsername(String username)
+            throws UsernameNotFoundException {
+        Usuario usuario =obtenerUsuarioXNomusuario(username);
+        return autenticacionUsuario(
+                usuario,
+                obtenerListaRoles(usuario.getRoles())
+        );
     }
     public Usuario obtenerUsuarioXNomusuario(String nomusuario){
         return usuarioRepository.findByNomusuario(nomusuario);
     }
-    public List<GrantedAuthority> obtenerListaRoles(Set<Rol> listaRoles){
-        List<GrantedAuthority> roles = new ArrayList<>();
-        for(Rol rol : listaRoles){
-            roles.add(new SimpleGrantedAuthority("ROLE_"+rol.getNomrol()));
+    public List<GrantedAuthority> obtenerListaRoles(Set<Rol> roles){
+        List<GrantedAuthority> authorityList = new ArrayList<>();
+        for(Rol rol : roles){
+            authorityList.add(new
+                    SimpleGrantedAuthority("ROLE_"+rol.getNomrol()));
         }
-        /*listaRoles.forEach(rol -> {
-            roles.add(new SimpleGrantedAuthority(rol.getNomrol()));
-        });*/
-        return roles;
+        return  authorityList;
     }
-    private UserDetails autenticacionUsuario(Usuario usuario,
-                                                  List<GrantedAuthority> authorityList){
-        return new User(usuario.getNomusuario(), usuario.getPassword(), usuario.getActivo(),
+
+    private UserDetails autenticacionUsuario(
+            Usuario usuario, List<GrantedAuthority> authorityList
+    ){
+        return new User(
+                usuario.getNomusuario(),
+                usuario.getPassword(),
+                usuario.getActivo(),
                 true, true, true,
-                authorityList);
+                authorityList
+        );
     }
 
 }

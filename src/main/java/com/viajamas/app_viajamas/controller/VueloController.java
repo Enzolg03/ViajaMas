@@ -9,12 +9,13 @@ import com.viajamas.app_viajamas.service.VueloService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@PreAuthorize("hasAnyRole('ADMIN', 'SUPERVISOR')")
 @AllArgsConstructor
 @Controller
 @RequestMapping(path = "api/v1/vuelos")

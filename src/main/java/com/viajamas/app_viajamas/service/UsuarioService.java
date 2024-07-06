@@ -7,7 +7,6 @@ import com.viajamas.app_viajamas.model.bd.Rol;
 import com.viajamas.app_viajamas.model.bd.Usuario;
 import com.viajamas.app_viajamas.repository.RolRepository;
 import com.viajamas.app_viajamas.repository.UsuarioRepository;
-import com.viajamas.app_viajamas.util.RandomPassword;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -19,7 +18,6 @@ public class UsuarioService implements IUsuarioService {
 
     private UsuarioRepository usuarioRepository;
     private RolRepository rolRepository;
-    private RandomPassword randomPassword;
 
     @Override
     public Usuario buscarUsuarioXNomUsuario(String nomusuario) {
@@ -31,7 +29,7 @@ public class UsuarioService implements IUsuarioService {
         usuario.setActivo(true);
         Rol usuarioRol = rolRepository.findByNomrol("ADMIN");
         usuario.setRoles(new HashSet<>(Arrays.asList(usuarioRol)));
-        usuario.setPassword(passwordEncoder.encode(randomPassword.generar(7)));
+        //usuario.setPassword(passwordEncoder.encode(randomPassword.generar(7)));
         return usuarioRepository.save(usuario);
     }
 
