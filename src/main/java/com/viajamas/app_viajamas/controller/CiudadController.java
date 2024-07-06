@@ -2,6 +2,7 @@ package com.viajamas.app_viajamas.controller;
 
 import com.viajamas.app_viajamas.exception.ResourceNotFoundException;
 import com.viajamas.app_viajamas.model.bd.Ciudad;
+import com.viajamas.app_viajamas.model.bd.Jurisdiccion;
 import com.viajamas.app_viajamas.model.dto.CiudadDto;
 import com.viajamas.app_viajamas.service.CiudadService;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,14 @@ public class CiudadController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(ciudadList, HttpStatus.OK);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Ciudad> obtenerCiudadXId(@PathVariable Integer id){
+        Ciudad ciudadObtenido = ciudadService.obtenerCiudadxId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("La ciudad con Id" +
+                        + id + " no existe"));
+        return new ResponseEntity<>(ciudadObtenido,
+                HttpStatus.OK);
     }
     @PostMapping("")
     public ResponseEntity<Ciudad> registrarCiudad(

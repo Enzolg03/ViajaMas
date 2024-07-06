@@ -29,7 +29,14 @@ public class VueloController {
         }
         return new ResponseEntity<>(vueloList, HttpStatus.OK);
     }
-
+    @GetMapping("/{id}")
+    public ResponseEntity<Vuelo> obtenerVueloXId(@PathVariable Integer id){
+        Vuelo vueloObtenido = vueloService.obtenerVueloxId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("El Vuelo con Id" +
+                        + id + " no existe"));
+        return new ResponseEntity<>(vueloObtenido,
+                HttpStatus.OK);
+    }
     @PostMapping("")
     public ResponseEntity<Vuelo> registrarVuelo(
             @RequestBody VueloDto vueloDto

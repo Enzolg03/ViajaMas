@@ -3,6 +3,7 @@ package com.viajamas.app_viajamas.controller;
 import com.viajamas.app_viajamas.exception.ResourceNotFoundException;
 import com.viajamas.app_viajamas.model.bd.Aerolinea;
 import com.viajamas.app_viajamas.model.bd.Aeropuerto;
+import com.viajamas.app_viajamas.model.bd.Ciudad;
 import com.viajamas.app_viajamas.model.dto.AerolineaDto;
 import com.viajamas.app_viajamas.model.dto.AeropuertoDto;
 import com.viajamas.app_viajamas.service.AeropuertoService;
@@ -29,7 +30,14 @@ public class AeropuertoController {
         }
         return new ResponseEntity<>(aeropuertoList, HttpStatus.OK);
     }
-
+    @GetMapping("/{id}")
+    public ResponseEntity<Aeropuerto> obtenerAeropuertoXId(@PathVariable Integer id){
+        Aeropuerto aeropuertoObtenido = aeropuertoService.obtenerAeropuertoxId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("El Aeropuerto con Id" +
+                        + id + " no existe"));
+        return new ResponseEntity<>(aeropuertoObtenido,
+                HttpStatus.OK);
+    }
     @PostMapping("")
     public ResponseEntity<Aeropuerto> registrarAeropuerto(
             @RequestBody AeropuertoDto aeropuertoDto
