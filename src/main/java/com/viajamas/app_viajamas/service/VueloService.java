@@ -45,11 +45,6 @@ public class VueloService implements IVueloService{
     }
 
     @Override
-    public void eliminarVuelo(int idvuelo) {
-        vueloRepository.deleteById(idvuelo);
-    }
-
-    @Override
     public Optional<Vuelo> obtenerVueloxId(Integer id) {
         Optional<Vuelo> vuelo = vueloRepository.findById(id);
         if(vuelo.isEmpty()){

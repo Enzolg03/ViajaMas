@@ -18,22 +18,11 @@ public class PaisService implements IPaisService{
         return paisRepository.save(pais);
     }
 
-    //@Override
-   //public void actualizarPais(Pais pais) {
-        //paisRepository.actualizarPais(
-                ///pais.getDescripcion(),pais.getIdpais()
-        //);
-    ///}
-
     @Override
     public List<Pais> listarPaises() {
         return paisRepository.findAll();
     }
 
-    //@Override
-    //public Optional eliminarPais(int idpais) {
-        //return paisRepository.deleteById(idpais);
-    //}
 
     @Override
     public Optional<Pais> obtenerPaisxId(Integer id) {

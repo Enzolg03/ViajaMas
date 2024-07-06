@@ -57,10 +57,4 @@ public class PaisController {
                 paisService.guardarPais(nuevoPais),
                 HttpStatus.OK);
     }
-    //@DeleteMapping("/{id}")
-    //public ResponseEntity<Pais> actualizarPais(
-            //@PathVariable Integer id
-    //){
-        //return new ResponseEntity<>(paisService.eliminarPais(id), HttpStatus.OK);
-    //}
 }

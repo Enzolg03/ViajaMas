@@ -10,6 +10,5 @@ import java.util.Optional;
 public interface IVueloService {
     Vuelo guardarVuelo(Vuelo vuelo, VueloDto vueloDto);
     List<Vuelo> listarVuelos();
-    void eliminarVuelo(int idvuelo);
     Optional<Vuelo> obtenerVueloxId(Integer id);
 }

@@ -37,11 +37,6 @@ public class JurisdiccionService implements IJurisdiccionService{
     }
 
     @Override
-    public void eliminarJurisdiccion(int idjurisdiccion) {
-        jurisdiccionRepository.deleteById(idjurisdiccion);
-    }
-
-    @Override
     public Optional<Jurisdiccion> obtenerJurisdiccionxId(Integer id) {
         Optional<Jurisdiccion> jurisdiccion= jurisdiccionRepository.findById(id);
         if(jurisdiccion.isEmpty()){

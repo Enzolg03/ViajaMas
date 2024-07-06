@@ -9,6 +9,5 @@ import java.util.Optional;
 public interface IAerolineaService {
     Aerolinea guardarAerolinea(Aerolinea aerolinea, AerolineaDto aerolineaDto);
     List<Aerolinea> listarAerolineas();
-    void eliminarAerolinea(int idaerolinea);
     Optional<Aerolinea> obtenerAerolineaxId(Integer id);
 }

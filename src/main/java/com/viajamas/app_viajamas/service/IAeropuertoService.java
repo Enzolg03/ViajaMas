@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface IAeropuertoService {
     Aeropuerto guardarAeropuerto(Aeropuerto aeropuerto, AeropuertoDto aeropuertoDto);
     List<Aeropuerto> listarAeropuertos();
-    void eliminarAeropuerto(int idaeropuerto);
+    //void eliminarAeropuerto(int idaeropuerto);
     Optional<Aeropuerto> obtenerAeropuertoxId(Integer id);
 }

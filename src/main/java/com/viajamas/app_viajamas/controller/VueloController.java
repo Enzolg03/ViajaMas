@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-@PreAuthorize("hasAnyRole('ADMIN', 'SUPERVISOR')")
+@PreAuthorize("hasAnyRole('ADMIN')")
 @AllArgsConstructor
 @Controller
 @RequestMapping(path = "api/v1/vuelos")
@@ -58,12 +58,5 @@ public class VueloController {
         return new ResponseEntity<>(
                 result,
                 HttpStatus.OK);
-    }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarVuelo(@PathVariable Integer id) {
-        Vuelo vuelo = vueloService.obtenerVueloxId(id)
-                .orElseThrow(() -> new ResourceNotFoundException("El Vuelo con Id " + id + " no existe"));
-        vueloService.eliminarVuelo(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

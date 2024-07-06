@@ -58,11 +58,4 @@ public class CiudadController {
                 result,
                 HttpStatus.OK);
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarCiudad(@PathVariable Integer id) {
-        Ciudad ciudad = ciudadService.obtenerCiudadxId(id)
-                .orElseThrow(() -> new ResourceNotFoundException("La ciudad con Id " + id + " no existe"));
-        ciudadService.eliminarCiudad(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 }

@@ -31,11 +31,6 @@ public class AerolineaService implements IAerolineaService{
     }
 
     @Override
-    public void eliminarAerolinea(int idaerolinea) {
-        aerolineaRepository.deleteById(idaerolinea);
-    }
-
-    @Override
     public Optional<Aerolinea> obtenerAerolineaxId(Integer id) {
         Optional<Aerolinea> aerolinea= aerolineaRepository.findById(id);
         if(aerolinea.isEmpty()){

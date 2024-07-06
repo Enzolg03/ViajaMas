@@ -61,11 +61,11 @@ public class AeropuertoController {
                 result,
                 HttpStatus.OK);
     }
-    @DeleteMapping("/{id}")
+    /*@DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarAeropuerto(@PathVariable Integer id) {
         Aeropuerto aeropuerto = aeropuertoService.obtenerAeropuertoxId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("El aeropuerto con Id " + id + " no existe"));
         aeropuertoService.eliminarAeropuerto(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+    }*/
 }

@@ -33,10 +33,10 @@ public class AeropuertoService implements IAeropuertoService{
         return aeropuertoRepository.findAll();
     }
 
-    @Override
-    public void eliminarAeropuerto(int idaeropuerto) {
-        aeropuertoRepository.deleteById(idaeropuerto);
-    }
+    //@Override
+    //public void eliminarAeropuerto(int idaeropuerto) {
+        //aeropuertoRepository.deleteById(idaeropuerto);
+    //}
 
     @Override
     public Optional<Aeropuerto> obtenerAeropuertoxId(Integer id) {

@@ -9,6 +9,5 @@ import java.util.Optional;
 public interface ICiudadService {
     Ciudad guardarCiudad(Ciudad ciudad, CiudadDto ciudadDto);
     List<Ciudad> listarCiudades();
-    void eliminarCiudad(int idciudad);
     Optional<Ciudad> obtenerCiudadxId(Integer id);
 }

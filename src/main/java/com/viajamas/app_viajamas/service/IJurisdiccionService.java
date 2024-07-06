@@ -9,7 +9,6 @@ import java.util.Optional;
 public interface IJurisdiccionService {
     Jurisdiccion guardarJurisdiccion(Jurisdiccion jurisdiccion, JurisdiccionDto jurisdiccionDto);
     List<Jurisdiccion> listarJurisdicciones();
-    void eliminarJurisdiccion(int idjurisdiccion);
     Optional<Jurisdiccion> obtenerJurisdiccionxId(Integer id);
 
 }

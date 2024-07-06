@@ -57,15 +57,4 @@ public class JurisdiccionController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarJurisdiccion(@PathVariable Integer id) {
-        Jurisdiccion jurisdiccion = jurisdiccionService.obtenerJurisdiccionxId(id)
-                .orElseThrow(() -> new ResourceNotFoundException("La jurisdicción con Id " + id + " no existe"));
-        jurisdiccionService.eliminarJurisdiccion(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-
-
-
 }

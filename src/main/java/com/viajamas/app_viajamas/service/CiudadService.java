@@ -30,11 +30,6 @@ public class CiudadService implements ICiudadService{
     }
 
     @Override
-    public void eliminarCiudad(int idciudad) {
-        ciudadRepository.deleteById(idciudad);
-    }
-
-    @Override
     public Optional<Ciudad> obtenerCiudadxId(Integer id) {
         Optional<Ciudad> ciudad= ciudadRepository.findById(id);
         if(ciudad.isEmpty()){
