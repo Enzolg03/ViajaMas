@@ -55,9 +55,6 @@ public class LoginController {
         }
     }
 
-
-
-
     private String generarToken(Usuario usuario){
         String clave = "@Cibertec2024";
         List<GrantedAuthority> grantedAuthorityList =

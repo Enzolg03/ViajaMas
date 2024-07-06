@@ -16,7 +16,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Controller
-@RequestMapping(path = "/api/v1/ciudades")
+@RequestMapping(path = "api/v1/ciudades")
 public class CiudadController {
     private CiudadService ciudadService;
     @GetMapping("")
