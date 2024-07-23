@@ -2,9 +2,7 @@ package com.viajamas.app_viajamas.controller;
 
 import com.viajamas.app_viajamas.exception.ResourceNotFoundException;
 import com.viajamas.app_viajamas.model.bd.Avion;
-import com.viajamas.app_viajamas.model.bd.Pais;
 import com.viajamas.app_viajamas.service.AvionService;
-import com.viajamas.app_viajamas.service.PaisService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -2,7 +2,6 @@ package com.viajamas.app_viajamas.controller;
 
 import com.viajamas.app_viajamas.exception.ResourceNotFoundException;
 import com.viajamas.app_viajamas.model.bd.Ciudad;
-import com.viajamas.app_viajamas.model.bd.Jurisdiccion;
 import com.viajamas.app_viajamas.model.dto.CiudadDto;
 import com.viajamas.app_viajamas.service.CiudadService;
 import lombok.AllArgsConstructor;
