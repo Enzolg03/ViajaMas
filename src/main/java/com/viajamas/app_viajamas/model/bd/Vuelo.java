@@ -17,19 +17,19 @@ public class Vuelo {
     private String numerovuelo;
 
     @ManyToOne
-    @JoinColumn(name="aerolinea")
+    @JoinColumn(name="idaerolinea")
     private Aerolinea aerolinea;
 
     @ManyToOne
-    @JoinColumn(name="avion")
+    @JoinColumn(name="idavion")
     private Avion avion;
 
     @ManyToOne
-    @JoinColumn(name="aeropuerto_origen")
+    @JoinColumn(name="id_aeropuerto_origen")
     private Aeropuerto aeropuerto_origen;
 
     @ManyToOne
-    @JoinColumn(name="aeropuerto_destino")
+    @JoinColumn(name="id_aeropuerto_destino")
     private Aeropuerto aeropuerto_destino;
 
     private String fechasalida;

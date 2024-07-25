@@ -26,10 +26,10 @@ public class VueloService implements IVueloService{
         Aeropuerto origen = new Aeropuerto();
         Aeropuerto destino = new Aeropuerto();
 
-        aerolinea.setIdaerolinea(vueloDto.getAerolinea());
-        avion.setIdavion(vueloDto.getAvion());
-        origen.setIdaeropuerto(vueloDto.getAeropuerto_origen());
-        destino.setIdaeropuerto(vueloDto.getAeropuerto_destino());
+        aerolinea.setIdaerolinea(vueloDto.getIdaerolinea());
+        avion.setIdavion(vueloDto.getIdavion());
+        origen.setIdaeropuerto(vueloDto.getId_aeropuerto_origen());
+        destino.setIdaeropuerto(vueloDto.getId_aeropuerto_destino());
 
         vuelo.setAerolinea(aerolinea);
         vuelo.setAvion(avion);

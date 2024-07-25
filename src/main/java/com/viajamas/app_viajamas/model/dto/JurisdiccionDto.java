@@ -3,8 +3,9 @@ package com.viajamas.app_viajamas.model.dto;
 import lombok.Data;
 
 @Data
-public class JurisdiccionDto {
+public class JurisdiccionDto implements DtoEntity{
     private Integer idjurisdiccion;
-    private String descripcion;
+    private String nomjurisdiccion;
     private Integer idpais;
+    private String nompais;
 }

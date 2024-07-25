@@ -14,7 +14,7 @@ public class Aerolinea {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer  idaerolinea;
-    private String nombre;
+    private String nomaerolinea;
     @ManyToOne
     @JoinColumn(name="idpais")
     private Pais pais;

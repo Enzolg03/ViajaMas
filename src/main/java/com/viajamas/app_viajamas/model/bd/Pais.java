@@ -14,5 +14,5 @@ public class Pais {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idpais;
-    private String descripcion;
+    private String nompais;
 }

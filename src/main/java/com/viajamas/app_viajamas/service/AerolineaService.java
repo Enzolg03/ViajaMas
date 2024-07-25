@@ -18,7 +18,7 @@ public class AerolineaService implements IAerolineaService{
 
     @Override
     public Aerolinea guardarAerolinea(Aerolinea aerolinea, AerolineaDto aerolineaDto) {
-        aerolinea.setNombre(aerolineaDto.getNombre());
+        aerolinea.setNomaerolinea(aerolineaDto.getNomaerolinea());
         Pais pais = new Pais();
         pais.setIdpais(aerolineaDto.getIdpais());
         aerolinea.setPais(pais);

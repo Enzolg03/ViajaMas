@@ -15,7 +15,7 @@ public class AeropuertoService implements IAeropuertoService{
     private AeropuertoRepository aeropuertoRepository;
     @Override
     public Aeropuerto guardarAeropuerto(Aeropuerto aeropuerto, AeropuertoDto aeropuertoDto) {
-        aeropuerto.setNombre(aeropuertoDto.getNombre());
+        aeropuerto.setNomaeropuerto(aeropuertoDto.getNomaeropuerto());
         Ciudad ciudad = new Ciudad();
         Jurisdiccion jurisdiccion = new Jurisdiccion();
         Pais pais = new Pais();

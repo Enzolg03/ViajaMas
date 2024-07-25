@@ -17,7 +17,7 @@ public class CiudadService implements ICiudadService{
     private CiudadRepository ciudadRepository;
     @Override
     public Ciudad guardarCiudad(Ciudad ciudad, CiudadDto ciudadDto) {
-        ciudad.setDescripcion(ciudadDto.getDescripcion());
+        ciudad.setNomciudad(ciudadDto.getNomciudad());
         Jurisdiccion jurisdiccion = new Jurisdiccion();
         jurisdiccion.setIdjurisdiccion(ciudadDto.getIdjurisdiccion());
         ciudad.setJurisdiccion(jurisdiccion);

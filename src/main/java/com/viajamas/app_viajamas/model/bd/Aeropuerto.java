@@ -14,7 +14,7 @@ public class Aeropuerto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idaeropuerto;
-    private String nombre;
+    private String nomaeropuerto;
     @ManyToOne
     @JoinColumn(name="idciudad")
     private Ciudad ciudad;

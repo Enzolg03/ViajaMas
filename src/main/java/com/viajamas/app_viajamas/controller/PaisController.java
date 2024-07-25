@@ -51,7 +51,7 @@ public class PaisController {
         Pais nuevoPais = paisService.obtenerPaisxId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("El país con Id" +
                         + id + " no existe"));
-        nuevoPais.setDescripcion(pais.getDescripcion());
+        nuevoPais.setNompais(pais.getNompais());
         return new ResponseEntity<>(
                 paisService.guardarPais(nuevoPais),
                 HttpStatus.OK);

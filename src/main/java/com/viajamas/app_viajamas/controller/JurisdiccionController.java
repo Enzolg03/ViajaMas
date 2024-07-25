@@ -2,8 +2,10 @@ package com.viajamas.app_viajamas.controller;
 
 import com.viajamas.app_viajamas.exception.ResourceNotFoundException;
 import com.viajamas.app_viajamas.model.bd.Jurisdiccion;
+import com.viajamas.app_viajamas.model.dto.DtoEntity;
 import com.viajamas.app_viajamas.model.dto.JurisdiccionDto;
-import com.viajamas.app_viajamas.service.JurisdiccionService;
+import com.viajamas.app_viajamas.service.IJurisdiccionService;
+import com.viajamas.app_viajamas.util.DtoUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @PreAuthorize("hasAnyRole('ADMIN', 'SUPERVISOR', 'WORKER')")
 @AllArgsConstructor
@@ -20,20 +23,22 @@ import java.util.List;
 @RequestMapping(path = "api/v1/jurisdicciones")
 public class JurisdiccionController {
 
-    private JurisdiccionService jurisdiccionService;
-
+    private IJurisdiccionService iJurisdiccionService;
     @GetMapping("")
-    public ResponseEntity<List<Jurisdiccion>> listarJurisdicciones(){
-        List<Jurisdiccion> jurisdiccionList = new ArrayList<>(jurisdiccionService.listarJurisdicciones());
-        if(jurisdiccionList.isEmpty()){
+    public ResponseEntity<List<DtoEntity>> listarJurisdiccionDto(){
+        List<DtoEntity> aerolineaDtoList = new ArrayList<>();
+        aerolineaDtoList = iJurisdiccionService.listarJurisdicciones()
+                .stream()
+                .map(x -> new DtoUtil().convertirADtoAnidado(x, new JurisdiccionDto()))
+                .collect(Collectors.toList());
+        if(aerolineaDtoList.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(jurisdiccionList, HttpStatus.OK);
+        return new ResponseEntity<>(aerolineaDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Jurisdiccion> obtenerJurisdiccionXId(@PathVariable Integer id){
-        Jurisdiccion jurisdiccionObtenido = jurisdiccionService.obtenerJurisdiccionxId(id)
+        Jurisdiccion jurisdiccionObtenido = iJurisdiccionService.obtenerJurisdiccionxId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("La jurisdiccion con Id" +
                         + id + " no existe"));
         return new ResponseEntity<>(jurisdiccionObtenido,
@@ -43,16 +48,16 @@ public class JurisdiccionController {
     @PostMapping("")
     public ResponseEntity<Jurisdiccion> registrarJurisdiccion(@RequestBody JurisdiccionDto jurisdiccionDto) {
         Jurisdiccion nuevaJurisdiccion = new Jurisdiccion();
-        Jurisdiccion result = jurisdiccionService.guardarJurisdiccion(nuevaJurisdiccion, jurisdiccionDto);
+        Jurisdiccion result = iJurisdiccionService.guardarJurisdiccion(nuevaJurisdiccion, jurisdiccionDto);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Jurisdiccion> actualizarJurisdiccion(@PathVariable Integer id,
                                                                @RequestBody JurisdiccionDto jurisdiccionDto) {
-        Jurisdiccion jurisdiccion = jurisdiccionService.obtenerJurisdiccionxId(id)
+        Jurisdiccion jurisdiccion = iJurisdiccionService.obtenerJurisdiccionxId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("La jurisdiccion con Id " + id + " no existe"));
-        Jurisdiccion result = jurisdiccionService.guardarJurisdiccion(jurisdiccion, jurisdiccionDto);
+        Jurisdiccion result = iJurisdiccionService.guardarJurisdiccion(jurisdiccion, jurisdiccionDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

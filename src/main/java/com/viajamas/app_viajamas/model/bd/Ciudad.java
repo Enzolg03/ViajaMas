@@ -14,7 +14,7 @@ public class Ciudad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idciudad;
-    private String descripcion;
+    private String nomciudad;
     @ManyToOne
     @JoinColumn(name="idjurisdiccion")
     private Jurisdiccion jurisdiccion;

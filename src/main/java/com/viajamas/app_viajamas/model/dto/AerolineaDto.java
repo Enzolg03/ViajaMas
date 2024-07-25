@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class AerolineaDto implements DtoEntity{
     private Integer  idaerolinea;
-    private String nombre;
+    private String nomaerolinea;
     private Integer idpais;
-    private String descripcion;
+    private String nompais;
 }
